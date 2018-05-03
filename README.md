@@ -75,8 +75,8 @@ $ jupyter notebook
 User can modify the example notebook (it is a good idea to save a copy as a template) and provide your own values for
 
  
-* sample_d2o_conc   (D2O fraction; 0<=, >=100)
-* sample_slds     (SLD of the sample layer)
-* sample_sld_errors  (SLD uncertainties)
+* `sample_d2o_conc`   (D2O fraction; 0<=, >=100)
+* `sample_slds`     (SLD of the sample layer)
+* `sample_sld_errors`  (SLD uncertainties)
 
 Note, that all three have to have an equal number of values. Once filled, rerun the whole notebook.
