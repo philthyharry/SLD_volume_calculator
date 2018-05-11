@@ -11,8 +11,8 @@ def calculate_volume_fractions(target_fit, solvent_fit, protein_fit, lipid_fit):
     sample from the experimental measurement at 3 concentrations and using the standard
     solvent, protein and lipid SLD/D20 concentration plots.
 
-    :param float exp_slope: slope from the experimental D2O-conc/SLD line fit
-    :param float exp_intercept: y-intercept of the experimental D2O-conc/SLD line fit
+    :param float target_fit: list with slope and y-intercept from the experimental
+    D2O-conc/SLD line fit
     :param list solvent_fit: list with solvent fitted slope and y-intercept values,
     eg. [0.0691, -0.56]
     :param list protein_fit: list with protein fitted slope and y-intercept values
