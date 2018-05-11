@@ -77,6 +77,22 @@ class SLDToolSetup:
         """Calculates percentage fractions for solvent, protein and lipids in a single
         layer from the standard setup curves and sample measurements (slds at different
         d2o concentrations."""
+
+        if self._sample_err is None:
+            self._sample_err = [ 0 for _ in self._sample_x]
+
+        try:
+            match = (len(self._sample_x) + len(self._sample_y)) / 2 == len(self._sample_err)
+            if not match:
+                raise ValueError(
+                    'Number of sample x, y and error values must be equal; got {}, {} '
+                    'and {} instead, respectively'.format(
+                        len(self._sample_x), len(self._sample_y), len(self._sample_err)))
+        except TypeError:
+            log.error('There is no sample data or it has a wrong format (should be '
+                      'a list of numbers)')
+            return
+
         log.info('Calculating volumes ...')
         result, volume_samples = find_volumes(
             sample_x=self._sample_x,
