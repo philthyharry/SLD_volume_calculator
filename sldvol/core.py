@@ -10,7 +10,13 @@ log = logging.getLogger(__name__)
 
 
 class SLDToolSetup:
-    """Class for setting up and running sld->vol calculations"""
+    """Class for setting up and running sld->vol calculations
+    :param list sample_x: list of d2o concentrationsat which the experimental sample
+    of interest was measured SLD values (given via sample_y; both lists should be equal
+    in length)
+    :param list sample_y: list of SLD values determined at different D2O concentrations
+    (sld values should be provided via sample_x; both lists should be equal in length)
+    """
 
     def __init__(self, sample_x=None, sample_y=None, sample_err=None):
 
@@ -32,6 +38,16 @@ class SLDToolSetup:
         self.vl_samples = None
         self.vp_samples = None
         self.vs_samples = None
+
+        try:
+            match = len(self._sample_y) == len(self._sample_x)
+            if not match:
+                raise ValueError(
+                    'Lendths of sample_x and sample_y should be equal; '
+                    'instead got {} and {} values (x and y, respectively)'.format(
+                        len(self._sample_x), len(self._sample_y)))
+        except TypeError:
+            pass
 
     @property
     def sample_x(self):
@@ -75,13 +91,13 @@ class SLDToolSetup:
             N=10000,
             return_samples=True)
 
-        log.info('Finished calculating volumes (values are stored as vs, vp and vl for '
+        log.info('Finished calculating volumes: vs, vp and vl ('
                  'solvent, protein and lipids, respectively).')
         self.vs, self.vp, self.vl = result
         self.vs_samples, self.vp_samples, self.vl_samples = volume_samples
 
         log.info(
-            'Result: \n\tSOLVENT = {:0.1f} +/- {:0.1f}%, '
+            'Result: \n\n\tSOLVENT = {:0.1f} +/- {:0.1f}%, '
             '\n\tPROTEIN = {:0.1f} +/- {:0.1f}%, '
             '\n\t  LIPID = {:0.1f} +/- {:0.1f}%'.format(
                 *[round(v, 3) for v in [*result[0], *result[1], *result[2]]])
