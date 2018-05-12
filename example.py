@@ -3,7 +3,7 @@ import logging
 import numpy as np
 import matplotlib.pyplot as plt
 
-from helpers.core import find_volumes
+from sldvol.tools import find_volumes
 
 log = logging.getLogger(__name__)
 log.setLevel(logging.INFO)

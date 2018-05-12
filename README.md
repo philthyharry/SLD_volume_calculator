@@ -46,7 +46,7 @@ $ pipenv install --dev
 
 ## Quickstart
 
-The core of this library is based on the `find_volumes` function provided in the `helpers.core` module. Its use is 
+The core of this library is based on the `find_volumes` function provided in the `sldvol.core` module. Its use is
 demonstrated in a demo notebook called `example_notebook.ipynb`.
  
 To launch the jupyter notebook:
